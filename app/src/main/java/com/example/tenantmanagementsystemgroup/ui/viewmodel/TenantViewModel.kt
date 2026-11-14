@@ -1,26 +1,36 @@
 package com.example.tenantmanagementsystemgroup.ui.viewmodel
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.map
+import androidx.lifecycle.viewModelScope
+import com.example.tenantmanagementsystemgroup.data.local.TenantDatabase
 import com.example.tenantmanagementsystemgroup.data.model.Tenant
 import com.example.tenantmanagementsystemgroup.data.repository.TenantRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class TenantViewModel : ViewModel() {
+class TenantViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val _tenants = MutableLiveData<List<Tenant>>(TenantRepository.tenants.toList())
-    val tenants: LiveData<List<Tenant>> = _tenants
+    private val repository: TenantRepository
+    val tenants: LiveData<List<Tenant>>
+    val tenantCount: LiveData<Int>
+    val totalRent: LiveData<Double>
 
-    private val _tenantCount = MutableLiveData<Int>(TenantRepository.tenants.size)
-    val tenantCount: LiveData<Int> = _tenantCount
-
-    private val _totalRent = MutableLiveData<Double>(TenantRepository.totalRent())
-    val totalRent: LiveData<Double> = _totalRent
+    init {
+        val tenantDao = TenantDatabase.getDatabase(application).tenantDao()
+        repository = TenantRepository(tenantDao)
+        tenants = repository.allTenants
+        tenantCount = repository.tenantCount
+        totalRent = repository.allTenants.map { list ->
+            repository.totalRent(list)
+        }
+    }
 
     fun addTenant(tenant: Tenant) {
-        TenantRepository.addTenant(tenant)
-        _tenants.value = TenantRepository.tenants.toList()
-        _tenantCount.value = TenantRepository.tenants.size
-        _totalRent.value = TenantRepository.totalRent()
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.addTenant(tenant)
+        }
     }
 }
