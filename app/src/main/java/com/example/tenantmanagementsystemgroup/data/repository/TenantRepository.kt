@@ -1,4 +1,6 @@
-package com.example.tenantmanagementsystemgroup
+package com.example.tenantmanagementsystemgroup.data.repository
+
+import com.example.tenantmanagementsystemgroup.data.model.Tenant
 
 object TenantRepository {
     val tenants = mutableListOf<Tenant>()
