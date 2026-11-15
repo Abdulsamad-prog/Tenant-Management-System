@@ -5,21 +5,25 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.tenantmanagementsystemgroup.ui.main.MainActivity
+import com.example.tenantmanagementsystemgroup.data.local.SessionManager
 import com.example.tenantmanagementsystemgroup.databinding.ActivityLoginBinding
+import com.example.tenantmanagementsystemgroup.ui.main.MainActivity
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var sessionManager: SessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val registeredEmail = intent.getStringExtra("EMAIL")
-        if (registeredEmail != null) {
-            binding.emailEditText.setText(registeredEmail)
+        sessionManager = SessionManager(this)
+
+        val prefillEmail = intent.getStringExtra("EMAIL") ?: sessionManager.getEmail()
+        if (prefillEmail.isNotBlank()) {
+            binding.emailEditText.setText(prefillEmail)
         }
 
         binding.loginButton.setOnClickListener {
@@ -30,6 +34,14 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Please enter your email and password", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+
+            // Preserve registered full name if logging in with the same email
+            val currentName = if (sessionManager.getEmail().equals(email, ignoreCase = true)) {
+                sessionManager.getFullName()
+            } else {
+                ""
+            }
+            sessionManager.saveUser(currentName, email)
 
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("EMAIL", email)

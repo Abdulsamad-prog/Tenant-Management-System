@@ -3,17 +3,19 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <!-- Tenant Management System Palette -->
-    <color name="brand_primary">#1F4E79</color>
-    <color name="brand_primary_dark">#153757</color>
-    <color name="brand_primary_light">#E8EEF7</color>
-    <color name="brand_accent">#0F766E</color>
-    <color name="brand_accent_light">#E6F4F1</color>
+    <!-- Understated Architectural Navy & Slate Palette -->
+    <color name="brand_primary">#1B365D</color>
+    <color name="brand_primary_dark">#122540</color>
+    <color name="brand_primary_light">#EBF0F7</color>
+    <color name="brand_accent">#0D6E6E</color>
+    <color name="brand_accent_light">#E7F3F2</color>
 
-    <!-- Surfaces & Text -->
-    <color name="screen_background">#F4F7FA</color>
+    <!-- Surfaces, Borders & Typography -->
+    <color name="screen_background">#F6F8FB</color>
     <color name="card_background">#FFFFFF</color>
-    <color name="card_stroke">#DCE4EE</color>
-    <color name="text_primary">#1E293B</color>
+    <color name="card_stroke">#E2E8F0</color>
+    <color name="text_primary">#0F172A</color>
     <color name="text_secondary">#64748B</color>
+    <color name="danger_text">#B91C1C</color>
+    <color name="danger_bg">#FEF2F2</color>
 </resources>

@@ -13,6 +13,10 @@ class TenantRepository(private val tenantDao: TenantDao) {
         tenantDao.insertTenant(tenant)
     }
 
+    suspend fun deleteTenant(tenant: Tenant) {
+        tenantDao.deleteTenant(tenant)
+    }
+
     fun totalRent(tenants: List<Tenant>): Double {
         return tenants.sumOf { it.rent.toDoubleOrNull() ?: 0.0 }
     }

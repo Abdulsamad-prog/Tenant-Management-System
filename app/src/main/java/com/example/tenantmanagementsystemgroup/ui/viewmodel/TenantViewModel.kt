@@ -33,4 +33,10 @@ class TenantViewModel(application: Application) : AndroidViewModel(application) 
             repository.addTenant(tenant)
         }
     }
+
+    fun deleteTenant(tenant: Tenant) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteTenant(tenant)
+        }
+    }
 }
