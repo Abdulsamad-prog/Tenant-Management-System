@@ -32,15 +32,21 @@ class AddTenantFragment : Fragment() {
 
         binding.saveButton.setOnClickListener {
             val name = binding.tenantNameEditText.text.toString().trim()
+            val unitNumber = binding.unitNumberEditText.text.toString().trim()
             val phone = binding.phoneEditText.text.toString().trim()
             val rent = binding.rentEditText.text.toString().trim()
 
-            if (name.isEmpty() || phone.isEmpty() || rent.isEmpty()) {
+            if (name.isEmpty() || unitNumber.isEmpty() || phone.isEmpty() || rent.isEmpty()) {
                 Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            val newTenant = Tenant(name = name, phone = phone, rent = rent)
+            val newTenant = Tenant(
+                name = name,
+                unitNumber = unitNumber,
+                phone = phone,
+                rent = rent
+            )
             viewModel.addTenant(newTenant)
 
             Toast.makeText(requireContext(), "Tenant saved!", Toast.LENGTH_SHORT).show()

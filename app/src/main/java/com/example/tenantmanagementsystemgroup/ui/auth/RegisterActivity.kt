@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.tenantmanagementsystemgroup.data.local.SessionManager
 import com.example.tenantmanagementsystemgroup.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {
@@ -15,6 +16,8 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val sessionManager = SessionManager(this)
+
         binding.registerButton.setOnClickListener {
             val fullName = binding.fullNameEditText.text.toString().trim()
             val email = binding.registerEmailEditText.text.toString().trim()
@@ -25,7 +28,8 @@ class RegisterActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            Toast.makeText(this, "Account created. Please log in.", Toast.LENGTH_SHORT).show()
+            sessionManager.saveUser(fullName, email)
+            Toast.makeText(this, "Account created. Please sign in.", Toast.LENGTH_SHORT).show()
 
             val intent = Intent(this, LoginActivity::class.java)
             intent.putExtra("EMAIL", email)

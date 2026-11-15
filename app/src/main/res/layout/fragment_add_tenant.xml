@@ -23,16 +23,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/addTenantSubheaderTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Assign a unit and record monthly rent details"
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/addTenantHeaderTextView" />
+
         <com.google.android.material.card.MaterialCardView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             app:cardBackgroundColor="@color/card_background"
             app:cardCornerRadius="16dp"
-            app:cardElevation="3dp"
+            app:cardElevation="1dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/addTenantHeaderTextView"
+            app:layout_constraintTop_toBottomOf="@id/addTenantSubheaderTextView"
             app:strokeColor="@color/card_stroke"
             app:strokeWidth="1dp">
 
@@ -46,9 +58,10 @@
                     android:id="@+id/tenantNameLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tenant Name"
-                    android:textColor="@color/text_primary"
-                    android:textSize="14sp"
+                    android:letterSpacing="0.06"
+                    android:text="TENANT NAME"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="11sp"
                     android:textStyle="bold" />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -56,7 +69,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
-                    android:hint="Enter full name"
+                    android:hint="e.g. Grace Wanjiku"
                     app:boxCornerRadiusBottomEnd="12dp"
                     app:boxCornerRadiusBottomStart="12dp"
                     app:boxCornerRadiusTopEnd="12dp"
@@ -73,13 +86,46 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
+                    android:id="@+id/unitNumberLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:letterSpacing="0.06"
+                    android:text="HOUSE / UNIT NUMBER"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:hint="e.g. Unit B4"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxStrokeColor="@color/brand_primary">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/unitNumberEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapCharacters"
+                        android:minHeight="52dp"
+                        android:textColor="@color/text_primary" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
                     android:id="@+id/phoneLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Phone Number"
-                    android:textColor="@color/text_primary"
-                    android:textSize="14sp"
+                    android:letterSpacing="0.06"
+                    android:text="PHONE NUMBER"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="11sp"
                     android:textStyle="bold" />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -108,9 +154,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Monthly Rent (KSh)"
-                    android:textColor="@color/text_primary"
-                    android:textSize="14sp"
+                    android:letterSpacing="0.06"
+                    android:text="MONTHLY RENT (KSH)"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="11sp"
                     android:textStyle="bold" />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -118,7 +165,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
-                    android:hint="Enter rent amount"
+                    android:hint="e.g. 25000"
                     app:boxCornerRadiusBottomEnd="12dp"
                     app:boxCornerRadiusBottomStart="12dp"
                     app:boxCornerRadiusTopEnd="12dp"
@@ -142,7 +189,7 @@
                     android:backgroundTint="@color/brand_primary"
                     android:text="SAVE TENANT"
                     android:textColor="@color/white"
-                    android:textSize="15sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
                     app:cornerRadius="12dp" />
 

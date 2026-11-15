@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.tenantmanagementsystemgroup.data.model.Tenant
 
-@Database(entities = [Tenant::class], version = 1, exportSchema = false)
+@Database(entities = [Tenant::class], version = 2, exportSchema = false)
 abstract class TenantDatabase : RoomDatabase() {
 
     abstract fun tenantDao(): TenantDao
@@ -21,7 +21,9 @@ abstract class TenantDatabase : RoomDatabase() {
                     context.applicationContext,
                     TenantDatabase::class.java,
                     "tenant_database"
-                ).build()
+                )
+                    .fallbackToDestructiveMigration(true)
+                    .build()
                 INSTANCE = instance
                 instance
             }
