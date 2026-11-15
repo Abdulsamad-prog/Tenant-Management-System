@@ -79,7 +79,7 @@
                 android:id="@+id/newTenantGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:constraint_referenced_ids="newTenantCard,newTenantLabel,newTenantTextView,callButton" />
+                app:constraint_referenced_ids="newTenantCard"/>
 
             <TextView
                 android:id="@+id/allTenantsLabel"
